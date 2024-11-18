@@ -42,8 +42,6 @@ def create_wallets():
     seeds = []  # Using private key as a substitute for seed
 
     # Creating wallets
-    print(Fore.GREEN + f"\nCreating {num_wallets} {wallet_type.upper()} wallets...\n")
-
     for i in range(num_wallets):
         if wallet_type == "evm":
             # Create a new EVM wallet
@@ -57,11 +55,6 @@ def create_wallets():
 
             # Add the seed (using the private key here as a substitute)
             seeds.append(acct.key.hex())
-
-            # Print wallet details for reference (optional)
-            print(Fore.BLUE + f"EVM Wallet {i + 1}:")
-            print(Fore.MAGENTA + f"  Address: {acct.address}")
-            print(Fore.MAGENTA + f"  Private Key: {acct.key.hex()}\n")
 
         elif wallet_type == "solana":
             # Create a new Solana wallet
@@ -77,11 +70,6 @@ def create_wallets():
 
             # Using the private key as a substitute for seed
             seeds.append(private_key_base58)
-
-            # Print wallet details for reference (optional)
-            print(Fore.BLUE + f"Solana Wallet {i + 1}:")
-            print(Fore.MAGENTA + f"  Address: {address}")
-            print(Fore.MAGENTA + f"  Private Key (Base58): {private_key_base58}\n")
 
     # Save private keys to a separate file
     with open(f'wallets/{wallet_type}_private_keys.json', 'w') as pk_file:
